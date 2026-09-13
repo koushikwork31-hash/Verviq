@@ -79,6 +79,16 @@
   to { background-position: 400px 400px; }
 }
 
+@keyframes eye-blink {
+  0%, 41%, 49%, 100% { transform: scaleY(1); }
+  45% { transform: scaleY(0.08); }
+}
+
+@keyframes sparkle-twinkle {
+  0%, 86%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  93% { opacity: 0.35; transform: scale(0.55) rotate(24deg); }
+}
+
 /* ── Base ───────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
@@ -225,4 +235,30 @@ body {
     opacity: 1;
     transform: none;
   }
+
+  .logo-eye-l,
+  .logo-eye-r {
+    animation: none;
+    transform: none;
+  }
+
+  .logo-sparkle {
+    animation: none;
+  }
+}
+
+/* ── Logo: hero-mask eyes + sparkle ─────────────────────────── */
+.logo-eye-l {
+  transform-origin: 26px 24px;
+  animation: eye-blink 4.6s ease-in-out infinite;
+}
+
+.logo-eye-r {
+  transform-origin: 38px 24px;
+  animation: eye-blink 4.6s ease-in-out infinite;
+  animation-delay: 0.05s;
+}
+
+.logo-sparkle {
+  animation: sparkle-twinkle 3.2s ease-in-out infinite;
 }
