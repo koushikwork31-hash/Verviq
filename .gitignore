@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+.devserver.log
+.freebuff/*.log
+.freebuff/*.log.err
+.freebuff/project-id
