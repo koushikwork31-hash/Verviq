@@ -23,6 +23,8 @@ npx next dev -p 3210
 ```
 
 - **Always pass `-p 3210` explicitly.** A machine-level `PORT` env var can override the default port (observed: Next silently bound to 56005).
+- **If a page returns HTTP 500 with `SyntaxError: Unexpected end of JSON input` in the dev log:** the `.next` dev cache is corrupted (usually from the server being killed mid-write). Fix: stop the server, `rm -rf .next`, restart. `next.config.ts` already sets `outputFileTracingRoot` to silence the multiple-lockfiles warning.
+- **Restarting after a build:** `rm -rf .next` first — the cache written by `next build` confuses `next dev`.
 - The documented preview URL is `http://localhost:3210/`.
 - Detached start (this environment): `nohup npx next dev -p 3210 > .freebuff/preview.log 2> .freebuff/preview.log.err &`
 - Find the listener pid with `netstat -ano | grep :3210 | grep LISTEN`, register it with the preview.
