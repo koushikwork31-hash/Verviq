@@ -1,12 +1,13 @@
 import Logo from "./Logo";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "Play & XP", href: "#playground" },
-  { label: "Programs", href: "#program" },
-  { label: "For Colleges", href: "#colleges" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Play & XP", href: "/play" },
+  { label: "Voices", href: "/voices" },
+  { label: "Programs", href: "/#program" },
+  { label: "For Colleges", href: "/#colleges" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
   { label: "Privacy Policy", href: "#" },
 ];
 

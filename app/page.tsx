@@ -4,6 +4,7 @@ import Problem from "@/components/Problem";
 import Difference from "@/components/Difference";
 import Arena from "@/components/Arena";
 import Playground from "@/components/Playground";
+import VoicesTeaser from "@/components/VoicesTeaser";
 import HowItWorks from "@/components/HowItWorks";
 import Session from "@/components/Session";
 import Program from "@/components/Program";
@@ -25,7 +26,8 @@ export default function Page() {
         <Problem />
         <Difference />
         <Arena />
-        <Playground />
+        <Playground full={false} />
+        <VoicesTeaser />
         <HowItWorks />
         <Session />
         <Program />

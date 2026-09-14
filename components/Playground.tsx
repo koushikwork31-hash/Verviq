@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import SectionTag from "./ui/SectionTag";
 import Reveal from "./ui/Reveal";
@@ -13,6 +14,8 @@ const GAMES = [
   { id: "sixty", tab: "⚡ 60 Seconds", blurb: "Timed speaking" },
   { id: "star", tab: "🧩 STAR Builder", blurb: "Structure puzzle" },
 ] as const;
+
+export const PLAY_TEASER_ID = "playground";
 
 type GameId = (typeof GAMES)[number]["id"];
 
@@ -58,9 +61,10 @@ function XpHeader() {
   );
 }
 
-export default function Playground() {
+export default function Playground({ full = true }: { full?: boolean }) {
   const [tab, setTab] = useState<GameId>("hotseat");
   const [remount, setRemount] = useState(0);
+  const { xp } = useXp();
 
   return (
     <section id="playground" className="section-pad relative overflow-hidden bg-ink text-white">
@@ -110,16 +114,70 @@ export default function Playground() {
         </Reveal>
 
         {/* game stage */}
-        <Reveal delay={260} className="mx-auto mt-8 max-w-2xl">
-          <div key={`${tab}-${remount}`}>
-            {tab === "hotseat" && <HotSeat onExit={() => setRemount((n) => n + 1)} />}
-            {tab === "sixty" && <SixtySeconds onExit={() => setRemount((n) => n + 1)} />}
-            {tab === "star" && <StarBuilder onExit={() => setRemount((n) => n + 1)} />}
-          </div>
-          <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
-            practice here · perform in the arena
-          </p>
-        </Reveal>
+        {full ? (
+          <>
+            {/* tabs */}
+            <Reveal delay={200} className="mx-auto mt-8 max-w-3xl">
+              <div className="flex flex-wrap justify-center gap-2" role="tablist" aria-label="Games">
+                {GAMES.map((g) => (
+                  <button
+                    key={g.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={tab === g.id}
+                    onClick={() => setTab(g.id)}
+                    className={`rounded-full px-4 py-2.5 font-display text-sm font-semibold transition-all sm:px-5 ${
+                      tab === g.id
+                        ? "bg-white text-ink shadow-[0_6px_20px_rgba(255,255,255,0.15)]"
+                        : "border border-white/15 bg-white/5 text-white/60 hover:border-white/35 hover:text-white"
+                    }`}
+                  >
+                    {g.tab}
+                    <span className={`ml-2 hidden font-mono text-[9px] uppercase tracking-wider sm:inline ${tab === g.id ? "text-ink/45" : "text-white/35"}`}>
+                      {g.blurb}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+
+            {/* game stage */}
+            <Reveal delay={260} className="mx-auto mt-8 max-w-2xl">
+              <div key={`${tab}-${remount}`}>
+                {tab === "hotseat" && <HotSeat onExit={() => setRemount((n) => n + 1)} />}
+                {tab === "sixty" && <SixtySeconds onExit={() => setRemount((n) => n + 1)} />}
+                {tab === "star" && <StarBuilder onExit={() => setRemount((n) => n + 1)} />}
+              </div>
+              <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
+                practice here · perform in the arena
+              </p>
+            </Reveal>
+          </>
+        ) : (
+          <Reveal delay={200} className="mx-auto mt-10 max-w-2xl">
+            <div className="relative overflow-hidden rounded-3xl border border-white/12 bg-white/[0.04] p-8 text-center backdrop-blur">
+              <div className="animate-blob absolute -right-16 -top-16 h-40 w-40 rounded-full bg-flame/20 blur-[80px]" />
+              <div className="relative">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {GAMES.map((g) => (
+                    <span key={g.id} className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-display text-sm font-semibold text-white/80">
+                      {g.tab}
+                    </span>
+                  ))}
+                </div>
+                <p className="mx-auto mt-4 max-w-md text-white/55">
+                  {xp > 0 ? "Your XP and badges are waiting." : "Real questions, real timer, real XP — saved on your device."} You&rsquo;re one click away.
+                </p>
+                <Link href="/play" className="btn btn-primary mt-6 !px-7 !py-3">
+                  Enter the Playground →
+                </Link>
+                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
+                  free · no signup · saves on this device
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );

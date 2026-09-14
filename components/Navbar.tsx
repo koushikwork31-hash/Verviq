@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "Why Verviq", href: "#why" },
-  { label: "Play", href: "#playground" },
-  { label: "Programs", href: "#program" },
-  { label: "For Colleges", href: "#colleges" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Why Verviq", href: "/#why" },
+  { label: "Play", href: "/play" },
+  { label: "Voices", href: "/voices" },
+  { label: "Programs", href: "/#program" },
+  { label: "For Colleges", href: "/#colleges" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -55,10 +56,10 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a href="#playground" className="btn btn-outline !py-2 !text-[13px]">
+          <a href="/play" className="btn btn-outline !py-2 !text-[13px]">
             Join the Next Challenge
           </a>
-          <a href="#colleges" className="btn btn-primary !py-2 !text-[13px]">
+          <a href="/#colleges" className="btn btn-primary !py-2 !text-[13px]">
             Partner With Us
           </a>
         </div>
@@ -111,10 +112,10 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="mt-auto flex flex-col gap-3 pt-8">
-          <a href="#playground" onClick={() => setOpen(false)} className="btn btn-outline w-full">
+          <a href="/play" onClick={() => setOpen(false)} className="btn btn-outline w-full">
             Join the Next Challenge
           </a>
-          <a href="#colleges" onClick={() => setOpen(false)} className="btn btn-primary w-full">
+          <a href="/#colleges" onClick={() => setOpen(false)} className="btn btn-primary w-full">
             Partner With Us
           </a>
         </div>

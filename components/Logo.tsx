@@ -17,11 +17,11 @@ export function LogoMark({ size = 34 }: { size?: number }) {
       </g>
       <rect x="12" y="9" width="40" height="31" rx="15.5" fill="#FF3D3D" />
       <path d="M22 38 L20 51 L33 39 Z" fill="#FF3D3D" />
-      <g transform="rotate(-16 26 24)">
-        <ellipse className="logo-eye-l" cx="26" cy="24" rx="6" ry="4.4" fill="#ffffff" />
+      <g transform="rotate(-16 25.6 24)">
+        <ellipse className="logo-eye-l" cx="25.6" cy="24" rx="4.9" ry="4.2" fill="#ffffff" />
       </g>
-      <g transform="rotate(16 38 24)">
-        <ellipse className="logo-eye-r" cx="38" cy="24" rx="6" ry="4.4" fill="#ffffff" />
+      <g transform="rotate(16 38.4 24)">
+        <ellipse className="logo-eye-r" cx="38.4" cy="24" rx="4.9" ry="4.2" fill="#ffffff" />
       </g>
       <path
         d="M54 7 L55.6 10.6 L59 12 L55.6 13.4 L54 17 L52.4 13.4 L49 12 L52.4 10.6 Z"
